@@ -13,5 +13,9 @@ public abstract class Account {
         return nomUtilisateur;
     }
 
+    public String getMotDePasse() {
+        return motDePasse;
+    }
+
     public abstract void afficherMenu();
 }
