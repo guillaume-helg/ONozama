@@ -5,18 +5,18 @@ import static org.junit.Assert.*;
 public class StoreTest {
 
     @org.junit.Test
-    public void ajouterCompte() {
+    public void addAccount() {
     }
 
     @org.junit.Test
-    public void ajouterProduit() {
+    public void addProduct() {
     }
 
     @org.junit.Test
-    public void afficherProduits() {
+    public void displayProducts() {
     }
 
     @org.junit.Test
-    public void seConnecter() {
+    public void connexion() {
     }
 }

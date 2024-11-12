@@ -1,16 +1,16 @@
 package org.miage.Model;
 
 public class Order {
-    private Product produit;
-    private int quantite;
+    private Product product;
+    private int quantity;
 
-    public Order(Product produit, int quantite) {
-        this.produit = produit;
-        this.quantite = quantite;
+    public Order(Product product, int quantity) {
+        this.product = product;
+        this.quantity = quantity;
     }
 
     @Override
     public String toString() {
-        return "Commande : " + produit.getNom() + ", Quantité : " + quantite;
+        return "Commande : " + product.getName() + ", Quantité : " + quantity;
     }
 }

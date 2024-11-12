@@ -1,18 +1,18 @@
 package org.miage.Model;
 
 
-public class Merchant extends Account {
+public class Seller extends User {
 
-    public Merchant(String nomUtilisateur, String motDePasse) {
+    public Seller(String nomUtilisateur, String motDePasse) {
         super(nomUtilisateur, motDePasse);
     }
 
     public void addProduct(Store store, Product produit) {
-        store.ajouterProduit(produit);
+        store.addProduct(produit);
     }
 
-    public void removeProduct(Store store, Product produit) {
-        store.supprimerProduit(produit);
+    public void deleteProduct(Store store, Product produit) {
+        store.deleteProduct(produit);
     }
 
     public void afficherMenu() {

@@ -1,22 +1,22 @@
 package org.miage.Model;
 
 public class Product {
-    private String nom;
-    private double prix;
+    private String name;
+    private double price;
     private int stock;
 
-    public Product(String nom, double prix, int stock) {
-        this.nom = nom;
-        this.prix = prix;
+    public Product(String name, double price, int stock) {
+        this.name = name;
+        this.price = price;
         this.stock = stock;
     }
 
-    public String getNom() {
-        return nom;
+    public String getName() {
+        return name;
     }
 
-    public double getPrix() {
-        return prix;
+    public double getPrice() {
+        return price;
     }
 
     public int getStock() {
@@ -25,6 +25,6 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Produit: " + nom + ", Prix: " + prix + ", Stock: " + stock;
+        return "Produit: " + name + ", Prix: " + price + ", Stock: " + stock;
     }
 }

@@ -5,50 +5,49 @@ import java.util.List;
 
 public class Store {
 
-    private List<Account> comptes;
-    private List<Product> produits;
+    private List<User> userList;
+    private List<Product> productList;
 
     public Store() {
-        this.comptes = new ArrayList<>();
-        this.produits = new ArrayList<>();
+        this.userList = new ArrayList<>();
+        this.productList = new ArrayList<>();
     }
 
-    public void ajouterCompte(Account compte) {
-        comptes.add(compte);
-        System.out.println("Compte ajouté : " + compte.getNomUtilisateur());
+    public void addAccount(User compte) {
+        userList.add(compte);
+        System.out.println("Compte ajouté : " + compte.getIdUser());
     }
 
-    public void modifierCompte(Account compte) {
+    /** A voir **
+    public void modifierCompte(User compte) {
 
+    }*/
+
+    public void deleteAccount(User compte) {
+        userList.remove(compte);
+        System.out.println("Compte supprimé : " + compte.getIdUser());
     }
 
-    public void supprimerCompte(Account compte) {
-        comptes.add(compte);
-        System.out.println("Compte ajouté : " + compte.getNomUtilisateur());
+    public void addProduct(Product produit) {
+        productList.add(produit);
+        System.out.println("Produit ajouté au magasin : " + produit.getName());
     }
 
-    public void ajouterProduit(Product produit) {
-        produits.add(produit);
-        System.out.println("Produit ajouté au magasin : " + produit.getNom());
+    public void deleteProduct(Product produit) {
+        productList.remove(produit);
+        System.out.println("Produit supprimé au magasin : " + produit.getName());
     }
 
-    public void supprimerProduit(Product produit) {
-        produits.remove(produit);
-        System.out.println("Produit ajouté au magasin : " + produit.getNom());
-    }
-
-
-
-    public void afficherProduits() {
+    public void displayProducts() {
         System.out.println("Produits disponibles dans le magasin :");
-        for (Product produit : produits) {
+        for (Product produit : productList) {
             System.out.println(produit);
         }
     }
 
-    public Account seConnecter(String username, String password) {
-        for (Account compte : comptes) {
-            if (compte.getNomUtilisateur().equals(username) && compte.getMotDePasse().equals(password)) {
+    public User connexion(String username, String password) {
+        for (User compte : userList) {
+            if (compte.getIdUser().equals(username) && compte.getPassword().equals(password)) {
                 return compte;
             }
         }

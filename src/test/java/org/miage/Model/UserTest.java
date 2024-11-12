@@ -2,14 +2,15 @@ package org.miage.Model;
 
 import static org.junit.Assert.*;
 
-public class MerchantTest {
+public class UserTest {
 
     @org.junit.Test
-    public void ajouterProduit() {
+    public void getNomUtilisateur() {
+
     }
 
     @org.junit.Test
-    public void afficherProduits() {
+    public void getMotDePasse() {
     }
 
     @org.junit.Test

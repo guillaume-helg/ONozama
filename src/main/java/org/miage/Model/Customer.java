@@ -3,23 +3,23 @@ package org.miage.Model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Customer extends Account {
-    private List<Order> historiqueCommandes;
+public class Customer extends User {
+    private List<Order> orderList;
 
     public Customer(String nomUtilisateur, String motDePasse) {
         super(nomUtilisateur, motDePasse);
-        this.historiqueCommandes = new ArrayList<>();
+        this.orderList = new ArrayList<>();
     }
 
-    public void passerCommande(Product produit, int quantite) {
+    public void order(Product produit, int quantite) {
         Order commande = new Order(produit, quantite);
-        historiqueCommandes.add(commande);
-        System.out.println("Commande passée : " + produit.getNom() + " - Quantité : " + quantite);
+        orderList.add(commande);
+        System.out.println("Commande passée : " + produit.getName() + " - Quantité : " + quantite);
     }
 
-    public void afficherHistoriqueCommandes() {
-        System.out.println("Historique des commandes pour " + nomUtilisateur + ":");
-        for (Order commande : historiqueCommandes) {
+    public void displayOrderList() {
+        System.out.println("Historique des commandes pour " + idUser + ":");
+        for (Order commande : orderList) {
             System.out.println(commande);
         }
     }

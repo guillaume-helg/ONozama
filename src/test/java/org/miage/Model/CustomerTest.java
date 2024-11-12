@@ -5,11 +5,11 @@ import static org.junit.Assert.*;
 public class CustomerTest {
 
     @org.junit.Test
-    public void passerCommande() {
+    public void order() {
     }
 
     @org.junit.Test
-    public void afficherHistoriqueCommandes() {
+    public void displayOrderList() {
     }
 
     @org.junit.Test

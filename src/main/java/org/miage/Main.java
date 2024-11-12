@@ -15,19 +15,19 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         Customer client = new Customer("c", "p");
-        Merchant marchand = new Merchant("marchand1", "password123");
+        Seller marchand = new Seller("marchand1", "password123");
         Admin admin = new Admin("admin", "admin123");
 
-        magasin.ajouterCompte(client);
-        magasin.ajouterCompte(marchand);
-        magasin.ajouterCompte(admin);
+        magasin.addAccount(client);
+        magasin.addAccount(marchand);
+        magasin.addAccount(admin);
 
         Product produit1 = new Product("Laptop", 999.99, 10);
         Product produit2 = new Product("Smartphone", 599.99, 20);
         marchand.addProduct(produit1);
         marchand.addProduct(produit2);
-        magasin.ajouterProduit(produit1);
-        magasin.ajouterProduit(produit2);
+        magasin.addProduct(produit1);
+        magasin.addProduct(produit2);
 
         String input = "";
         System.out.println("Bienvenue dans le magasin en ligne !");
@@ -35,7 +35,7 @@ public class Main {
             System.out.println("Entrez vos pseudo suivi du mdp : pseudo mdp");
             input = scanner.nextLine();
 
-            Account co = magasin.seConnecter(input.split(" ")[0], input.split(" ")[1]);
+            User co = magasin.connexion(input.split(" ")[0], input.split(" ")[1]);
             if (co == null) {
                 System.out.println("Vous n'avez pas le bon pseudo mdp");
                 break;
@@ -71,13 +71,13 @@ public class Main {
 
             switch (choixClient.toLowerCase()) {
                 case "passer":
-                    magasin.afficherProduits();
+                    magasin.displayProducts();
 
                     Product produitTest = new Product("Laptop", 999.99, 10);
-                    client.passerCommande(produitTest, 1);
+                    client.order(produitTest, 1);
                     break;
                 case "historique":
-                    client.afficherHistoriqueCommandes();
+                    client.displayOrderList();
                     break;
                 case "retour":
                     System.out.println("Retour au menu principal.");
@@ -89,7 +89,7 @@ public class Main {
         }
     }
 
-    private static void naviguerMarchand(Scanner scanner, Merchant marchand) {
+    private static void naviguerMarchand(Scanner scanner, Seller marchand) {
         String choixMarchand = "";
         while (!choixMarchand.equals("retour")) {
             marchand.afficherMenu();

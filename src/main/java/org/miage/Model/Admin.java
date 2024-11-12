@@ -1,15 +1,15 @@
 package org.miage.Model;
 
-public class Admin extends Account {
+public class Admin extends User {
     public Admin(String nomUtilisateur, String motDePasse) {
         super(nomUtilisateur, motDePasse);
     }
 
-    public void supprimerCompte(Account compte) {
-        System.out.println("Compte " + compte.getNomUtilisateur() + " supprimé.");
+    public void supprimerCompte(User compte) {
+        System.out.println("Compte " + compte.getIdUser() + " supprimé.");
     }
 
-    public void modifyAccount(Account compteAModifier, Account compteModifie) {
+    public void modifyAccount(User compteAModifier, User compteModifie) {
 
     }
 
