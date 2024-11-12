@@ -1,16 +1,19 @@
 package org.miage.Model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Store {
 
     private List<User> userList;
     private List<Product> productList;
+    private HashMap<Seller, Product> productHashMap;
 
     public Store() {
         this.userList = new ArrayList<>();
         this.productList = new ArrayList<>();
+        this.productHashMap = new HashMap<>();
     }
 
     public void addAccount(User compte) {
@@ -28,13 +31,15 @@ public class Store {
         System.out.println("Compte supprimé : " + compte.getIdUser());
     }
 
-    public void addProduct(Product produit) {
+    public void addProduct(Product produit, Seller seller) {
         productList.add(produit);
+        productHashMap.put(seller, produit);
         System.out.println("Produit ajouté au magasin : " + produit.getName());
     }
 
-    public void deleteProduct(Product produit) {
+    public void deleteProduct(Product produit, Seller seller) {
         productList.remove(produit);
+        productHashMap.remove(seller, produit);
         System.out.println("Produit supprimé au magasin : " + produit.getName());
     }
 
