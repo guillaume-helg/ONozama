@@ -8,11 +8,11 @@ public class Seller extends User {
     }
 
     public void addProduct(Store store, Product produit) {
-        store.addProduct(produit);
+        store.addProduct(produit, this);
     }
 
     public void deleteProduct(Store store, Product produit) {
-        store.deleteProduct(produit);
+        store.deleteProduct(produit, this);
     }
 
     public void afficherMenu() {
