@@ -1,4 +1,7 @@
-package org.miage.Model;
+package org.miage.models;
+
+import org.miage.models.accounts.Seller;
+import org.miage.models.accounts.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,7 +51,7 @@ public class Store {
         }
     }
 
-    public User connexion(String username, String password) {
+    public User connection(String username, String password) {
         for (User compte : userList) {
             if (compte.getIdUser().equals(username) && compte.getPassword().equals(password)) {
                 return compte;

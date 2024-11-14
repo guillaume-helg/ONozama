@@ -1,22 +1,21 @@
 package org.miage;
-import org.miage.Model.*;
 
+import org.miage.models.*;
+import org.miage.models.accounts.*;
+import org.miage.navigation.*;
 import java.util.Scanner;
 
 public class Main {
-
     public static Store magasin = new Store();
 
-
     public static void main(String[] args) {
-
-
-
+        // Initialisation des utilisateurs et des produits...
         Scanner scanner = new Scanner(System.in);
 
-        Customer client = new Customer("c", "p");
-        Seller marchand = new Seller("marchand1", "password123");
-        Admin admin = new Admin("admin", "admin123");
+        /** DATA TMP ***/
+        Customer client = new Customer("jerem87", "pass");
+        Seller marchand = new Seller("bogdan21", "password123");
+        Admin admin = new Admin("guillaume31", "admin123");
 
         magasin.addAccount(client);
         magasin.addAccount(marchand);
@@ -24,10 +23,10 @@ public class Main {
 
         Product produit1 = new Product("Laptop", 999.99, 10);
         Product produit2 = new Product("Smartphone", 599.99, 20);
-        marchand.addProduct(produit1);
-        marchand.addProduct(produit2);
-        magasin.addProduct(produit1);
-        magasin.addProduct(produit2);
+        marchand.addProduct(magasin, produit1);
+        marchand.addProduct(magasin, produit2);
+        /** DATA TMP ***/
+
 
         String input = "";
         System.out.println("Bienvenue dans le magasin en ligne !");
@@ -35,7 +34,7 @@ public class Main {
             System.out.println("Entrez vos pseudo suivi du mdp : pseudo mdp");
             input = scanner.nextLine();
 
-            User co = magasin.connexion(input.split(" ")[0], input.split(" ")[1]);
+            User co = magasin.connection(input.split(" ")[0], input.split(" ")[1]);
             if (co == null) {
                 System.out.println("Vous n'avez pas le bon pseudo mdp");
                 break;
@@ -43,13 +42,13 @@ public class Main {
 
             switch (co.getClass().getSimpleName()) {
                 case "Customer":
-                    naviguerClient(scanner, client);
+                    ClientNavigation.naviguerClient(scanner, (Customer) co, magasin);
                     break;
-                case "Merchant":
-                    naviguerMarchand(scanner, marchand);
+                case "Seller":
+                    SellerNavigation.naviguerMarchand(scanner, (Seller) co, magasin);
                     break;
                 case "Admin":
-                    naviguerAdmin(scanner, admin);
+                    AdminNavigation.naviguerAdmin(scanner, (Admin) co);
                     break;
                 case "i leave":
                     System.out.println("Au revoir !");
@@ -60,78 +59,5 @@ public class Main {
             }
         }
         scanner.close();
-    }
-
-    private static void naviguerClient(Scanner scanner, Customer client) {
-        String choixClient = "";
-        while (!choixClient.equals("retour")) {
-            client.afficherMenu();
-            System.out.println("Entrez une option (passer, historique, retour) :");
-            choixClient = scanner.nextLine();
-
-            switch (choixClient.toLowerCase()) {
-                case "passer":
-                    magasin.displayProducts();
-
-                    Product produitTest = new Product("Laptop", 999.99, 10);
-                    client.order(produitTest, 1);
-                    break;
-                case "historique":
-                    client.displayOrderList();
-                    break;
-                case "retour":
-                    System.out.println("Retour au menu principal.");
-                    break;
-                default:
-                    System.out.println("Option non reconnue.");
-                    break;
-            }
-        }
-    }
-
-    private static void naviguerMarchand(Scanner scanner, Seller marchand) {
-        String choixMarchand = "";
-        while (!choixMarchand.equals("retour")) {
-            marchand.afficherMenu();
-            System.out.println("Entrez une option (ajouter, afficher, retour) :");
-            choixMarchand = scanner.nextLine();
-
-            switch (choixMarchand.toLowerCase()) {
-                case "ajouter":
-                    Product nouveauProduit = new Product("Tablette", 299.99, 15);
-                    marchand.addProduct(nouveauProduit);
-                    break;
-                case "afficher":
-                    marchand.afficherProduits();
-                    break;
-                case "retour":
-                    System.out.println("Retour au menu principal.");
-                    break;
-                default:
-                    System.out.println("Option non reconnue.");
-                    break;
-            }
-        }
-    }
-
-    private static void naviguerAdmin(Scanner scanner, Admin admin) {
-        String choixAdmin = "";
-        while (!choixAdmin.equals("retour")) {
-            admin.afficherMenu();
-            System.out.println("Entrez une option (supprimer, retour) :");
-            choixAdmin = scanner.nextLine();
-
-            switch (choixAdmin.toLowerCase()) {
-                case "supprimer":
-                    System.out.println("Quel compte souhaitez-vous supprimer ?");
-                    break;
-                case "retour":
-                    System.out.println("Retour au menu principal.");
-                    break;
-                default:
-                    System.out.println("Option non reconnue.");
-                    break;
-            }
-        }
     }
 }

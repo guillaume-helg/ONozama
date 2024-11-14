@@ -1,6 +1,4 @@
-package org.miage.Model;
-
-import static org.junit.Assert.*;
+package org.miage.models;
 
 public class SellerTest {
 
@@ -13,6 +11,6 @@ public class SellerTest {
     }
 
     @org.junit.Test
-    public void afficherMenu() {
+    public void displayMenu() {
     }
 }

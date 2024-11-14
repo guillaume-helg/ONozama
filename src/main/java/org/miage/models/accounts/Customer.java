@@ -1,4 +1,7 @@
-package org.miage.Model;
+package org.miage.models.accounts;
+
+import org.miage.models.Order;
+import org.miage.models.Product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +27,7 @@ public class Customer extends User {
         }
     }
 
-    public void afficherMenu() {
+    public void displayMenu() {
         System.out.println("Menu Client : 1. Passer une commande, 2. Afficher l'historique des commandes");
     }
 }

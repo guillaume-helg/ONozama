@@ -1,6 +1,4 @@
-package org.miage.Model;
-
-import static org.junit.Assert.*;
+package org.miage.models;
 
 public class AdminTest {
 
@@ -9,6 +7,6 @@ public class AdminTest {
     }
 
     @org.junit.Test
-    public void afficherMenu() {
+    public void displayMenu() {
     }
 }

@@ -1,4 +1,4 @@
-package org.miage.Model;
+package org.miage.models.accounts;
 
 public class Admin extends User {
     public Admin(String nomUtilisateur, String motDePasse) {
@@ -14,7 +14,7 @@ public class Admin extends User {
     }
 
     @Override
-    public void afficherMenu() {
+    public void displayMenu() {
         System.out.println("Menu Administrateur : 1. Gérer les comptes, 2. Gérer les produits");
     }
 }

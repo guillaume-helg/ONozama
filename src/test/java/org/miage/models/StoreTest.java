@@ -1,6 +1,9 @@
-package org.miage.Model;
+package org.miage.models;
 
-import static org.junit.Assert.*;
+import org.miage.models.accounts.Customer;
+import org.miage.models.accounts.User;
+
+import static org.junit.Assert.assertEquals;
 
 public class StoreTest {
 
@@ -27,6 +30,6 @@ public class StoreTest {
         User julie = new Customer("JulieMyLove", "CremeChantilly");
         this.store.addAccount(julie);
 
-        assertEquals(julie, this.store.connexion("JulieMyLove", "CremeChantilly"));
+        assertEquals(julie, this.store.connection("JulieMyLove", "CremeChantilly"));
     }
 }

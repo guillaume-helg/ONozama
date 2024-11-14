@@ -1,4 +1,4 @@
-package org.miage.Model;
+package org.miage.models;
 
 public class Order {
     private Product product;

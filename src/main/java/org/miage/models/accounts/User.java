@@ -1,4 +1,4 @@
-package org.miage.Model;
+package org.miage.models.accounts;
 
 public abstract class User {
     protected String idUser;
@@ -17,5 +17,5 @@ public abstract class User {
         return password;
     }
 
-    public abstract void afficherMenu();
+    public abstract void displayMenu();
 }
