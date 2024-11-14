@@ -59,4 +59,12 @@ public class Store {
         }
         return null;
     }
+
+    public List<User> getUserList() {
+        return userList;
+    }
+
+    public HashMap<Seller, Product> getProductHashMap() {
+        return productHashMap;
+    }
 }
