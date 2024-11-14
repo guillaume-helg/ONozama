@@ -1,5 +1,6 @@
 package org.miage.models;
 
+import org.junit.*;
 import org.miage.models.accounts.Customer;
 import org.miage.models.accounts.User;
 
@@ -9,23 +10,24 @@ public class StoreTest {
 
     private Store store;
 
+    @Before
     public void setUp() throws Exception {
         this.store = new Store();
     }
 
-    @org.junit.Test
+    @Test
     public void addAccount() {
     }
 
-    @org.junit.Test
+    @Test
     public void addProduct() {
     }
 
-    @org.junit.Test
+    @Test
     public void displayProducts() {
     }
 
-    @org.junit.Test
+    @Test
     public void connection() {
         User julie = new Customer("JulieMyLove", "CremeChantilly");
         this.store.addAccount(julie);
