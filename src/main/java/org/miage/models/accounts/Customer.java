@@ -30,4 +30,8 @@ public class Customer extends User {
     public void displayMenu() {
         System.out.println("Menu Client : 1. Passer une commande, 2. Afficher l'historique des commandes");
     }
+
+    public List<Order> getOrderList() {
+        return orderList;
+    }
 }
