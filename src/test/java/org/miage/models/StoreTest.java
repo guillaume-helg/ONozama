@@ -31,11 +31,6 @@ public class StoreTest {
         assertEquals(1, this.store.getProductHashMap().size());
     }
 
-    // TODO Je ne sais pas comment tester ça
-    @Test
-    public void displayProducts() {
-        this.store.displayProducts();
-    }
 
     @Test
     public void connection() {

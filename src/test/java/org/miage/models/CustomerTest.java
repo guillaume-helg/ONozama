@@ -21,5 +21,4 @@ public class CustomerTest {
         assertEquals(1, this.customer.getOrderList().size());
         assertEquals(0, product.getStock()); // TODO fonction de Jeremy qui marche pas
     }
-
 }
