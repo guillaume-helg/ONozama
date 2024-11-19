@@ -3,15 +3,10 @@ package org.miage.models;
 import java.util.HashMap;
 
 public class Cart {
-    private Product product;
-    private int quantity;
-    private HashMap<Product, Integer> cartMap;
+    private final HashMap<Product, Integer> cartMap;
 
 
-    public Cart(Product product, int quantity) {
-        this.product = product;
-        this.quantity = quantity;
-
+    public Cart() {
         this.cartMap = new HashMap<>();
     }
 
@@ -48,12 +43,40 @@ public class Cart {
 
     @Override
     public String toString() {
+        int count = 0;
+
         StringBuilder sb = new StringBuilder("Contenu du panier :\n");
         for (var entry : cartMap.entrySet()) {
-            sb.append("Produit : ").append(entry.getKey().getName())
+            sb.append("Produit ("+ count++ +") : ").append(entry.getKey().getName())
                     .append(", Quantité : ").append(entry.getValue())
                     .append("\n");
         }
+
+        if(cartMap.isEmpty()){
+            sb.append("-- Vide --\n");
+        }
+
         return sb.toString();
+    }
+
+    public void clear(){
+        cartMap.clear();
+    }
+
+    /**
+     * Récupère un produit du panier selon son index.
+     *
+     * @param index L'index du produit dans le panier.
+     * @return Le produit correspondant ou null si l'index est invalide.
+     */
+    public Product getProductByIndex(int index) {
+        int count = 0;
+        for (Product product : cartMap.keySet()) {
+            if (count == index) {
+                return product;
+            }
+            count++;
+        }
+        return null;
     }
 }

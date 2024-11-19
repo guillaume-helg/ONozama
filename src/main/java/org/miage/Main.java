@@ -20,7 +20,7 @@ public class Main {
                 System.out.println("Entrez votre pseudo suivi du mot de passe (ou tapez 'i leave' pour quitter) :");
                 input = scanner.nextLine().trim();
 
-                if (input.equalsIgnoreCase("i leave")) {
+                if (input.equalsIgnoreCase("i leave") || input.equalsIgnoreCase("retour")) {
                     System.out.println("Au revoir !");
                     break;
                 }
@@ -45,6 +45,7 @@ public class Main {
      * Initialisation des données temporaires (comptes et produits).
      */
     private static void initializeData() {
+        System.out.println("--------------------INITIALISATION--------------------");
         Customer client = new Customer("jerem87", "pass");
         Seller marchand = new Seller("bogdan21", "password123");
         Admin admin = new Admin("guillaume31", "admin123");
@@ -58,7 +59,7 @@ public class Main {
         marchand.addProduct(magasin, produit1);
         marchand.addProduct(magasin, produit2);
 
-        System.out.println("Données de test initialisées !");
+        System.out.println("Données de test initialisées !\n");
     }
 
     /**
