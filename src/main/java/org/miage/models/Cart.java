@@ -1,10 +1,10 @@
 package org.miage.models;
 
-public class Order {
+public class Cart {
     private Product product;
     private int quantity;
 
-    public Order(Product product, int quantity) {
+    public Cart(Product product, int quantity) {
         this.product = product;
         this.quantity = quantity;
     }
