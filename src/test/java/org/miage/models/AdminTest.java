@@ -16,10 +16,10 @@ public class AdminTest {
     @org.junit.Test
     public void supprimerCompte() {
         Store store = new Store();
+
         Customer customer = new Customer("Brochet", "Poisson");
         store.addAccount(customer);
 
-        admin.deleteAccount(store, customer);
+        admin.deleteAccount(customer);
     }
-
 }

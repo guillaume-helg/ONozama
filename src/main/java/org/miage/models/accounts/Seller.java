@@ -35,14 +35,6 @@ public class Seller extends User {
     }
 
 
-    public static void main(String[] args) {
-        Seller seller = new Seller("John", "Doe");
-        Store store = new Store();
-        Product product = new Product("sas", 12.0, 2);
-        store.addProduct(product, seller);
-        seller.displayProduct(store);
-    }
-
     public void displayMenu() {
         System.out.println("Menu Marchand : 1. Ajouter un produit, 2. Afficher les produits");
     }

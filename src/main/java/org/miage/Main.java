@@ -78,10 +78,10 @@ public class Main {
                 SellerNavigation.naviguerMarchand(scanner, (Seller) user, magasin);
                 break;
             case "Admin":
-                AdminNavigation.naviguerAdmin(scanner, (Admin) user);
+                AdminNavigation.naviguerAdmin(scanner, (Admin) user, magasin);
                 break;
             default:
-                System.out.println("Type de compte non reconnu.");
+                System.out.println("Type de compte non reconnu");
                 break;
         }
     }

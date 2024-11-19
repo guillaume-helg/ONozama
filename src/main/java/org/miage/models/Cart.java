@@ -5,7 +5,6 @@ import java.util.HashMap;
 public class Cart {
     private final HashMap<Product, Integer> cartMap;
 
-
     public Cart() {
         this.cartMap = new HashMap<>();
     }
@@ -39,7 +38,6 @@ public class Cart {
     public int size(){
         return cartMap.size();
     }
-
 
     @Override
     public String toString() {

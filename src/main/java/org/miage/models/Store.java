@@ -156,4 +156,16 @@ public class Store {
     public HashMap<Seller, ArrayList<Product>> getProductHashMap() {
         return productHashMap;
     }
+
+    public void displayUser() {
+        int i = 0;
+        for (User compte : userList) {
+            System.out.println(i + " " + compte);
+            i++;
+        }
+    }
+
+    public void deleteAccount(int index) {
+        this.userList.remove(index);
+    }
 }

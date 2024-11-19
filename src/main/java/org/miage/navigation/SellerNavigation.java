@@ -21,12 +21,12 @@ public class SellerNavigation {
                     String nomProduit = scanner.nextLine();
 
                     System.out.println("Entrez le prix du produit : ");
-                    double prixProduit = 0;
+                    String prixProduit = scanner.nextLine();
 
                     System.out.println("Entrez la quantité de stock : ");
-                    int quantiteProduit = 0;
+                    String qttProduit = scanner.nextLine();
 
-                    Product nouveauProduit = new Product(nomProduit, prixProduit, quantiteProduit);
+                    Product nouveauProduit = new Product(nomProduit, Double.parseDouble(prixProduit), Integer.parseInt(qttProduit));
                     marchand.addProduct(magasin, nouveauProduit);
                     System.out.println("Produit ajouté !");
                     break;

@@ -6,10 +6,11 @@ import org.miage.models.Product;
 import java.util.Scanner;
 
 public class Customer extends User {
-    private final Cart cart = new Cart();
+    private Cart cart;
 
     public Customer(String nomUtilisateur, String motDePasse) {
         super(nomUtilisateur, motDePasse);
+        this.cart = new Cart();
     }
 
     /**
