@@ -1,6 +1,7 @@
 package org.miage.models;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -13,7 +14,7 @@ import org.miage.models.accounts.User;
 import java.util.*;
 
 public class Store {
-
+    @JsonIgnore
     private List<User> userList;
     @JsonDeserialize(using = HashMapSellerProductDeserializer.class)
     @JsonSerialize(using = HashMapSellerProductSerializer.class)
@@ -27,6 +28,7 @@ public class Store {
     @JsonCreator
     public Store(@JsonProperty("productHashMap") HashMap<Seller, ArrayList<Product>> productHashMap) {
         this.productHashMap = productHashMap;
+        this.userList = new ArrayList<>();
     }
 
     public void setProductHashMap(HashMap<Seller, ArrayList<Product>> productHashMap) {

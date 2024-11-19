@@ -20,6 +20,11 @@ public class HashMapSellerProductDeserializer extends JsonDeserializer<HashMap<S
         this.sellers = sellers;
     }
 
+    HashMapSellerProductDeserializer(){
+        this.products = new ArrayList<>();
+        this.sellers = new ArrayList<>();
+    }
+
     @Override
     public HashMap<Seller, ArrayList<Product>> deserialize(JsonParser parser, DeserializationContext ctxt) throws IOException {
         HashMap<Seller, ArrayList<Product>> result = new HashMap<>();

@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import org.miage.models.Product;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,6 +18,10 @@ public class HashMapProductIntegerDeserializer extends JsonDeserializer<HashMap<
         this.products = products;
     }
 
+    HashMapProductIntegerDeserializer(){
+        products = new ArrayList<Product>();
+    }
+
     @Override
     public HashMap<Product, Integer> deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         HashMap<Product, Integer> productIntegerHashMap = new HashMap<>();
@@ -25,8 +30,10 @@ public class HashMapProductIntegerDeserializer extends JsonDeserializer<HashMap<
             jsonParser.nextToken();
         }
 
+
         while (jsonParser.currentToken() == JsonToken.FIELD_NAME) {
             String productName = jsonParser.getCurrentName();
+            jsonParser.nextToken();
             Integer value = jsonParser.getIntValue();
 
             Product product = null;
@@ -38,7 +45,6 @@ public class HashMapProductIntegerDeserializer extends JsonDeserializer<HashMap<
             }
 
             productIntegerHashMap.put(product, value);
-
             jsonParser.nextToken();
         }
 

@@ -2,6 +2,7 @@ package org.miage.database;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.miage.models.Product;
 import org.miage.models.Store;
 import org.miage.models.accounts.Admin;
@@ -11,20 +12,36 @@ import org.miage.models.accounts.User;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 public class Database {
     public static final String dataPath = new File("").getAbsolutePath() + "\\data\\";
 
     public static Store load() throws IOException {
-        Store store = new Store();
         ObjectMapper mapper = new ObjectMapper();
 
         Product[] products = mapper.readValue(new File(dataPath + "products.json"), Product[].class);
-        printArray(products);
+        Seller[] sellers = mapper.readValue(new File(dataPath + "sellers.json"), Seller[].class);
+        Admin[] admins = mapper.readValue(new File(dataPath + "admins.json"), Admin[].class);
+
+        SimpleModule module = new SimpleModule();
+        module.addDeserializer(HashMap.class, new HashMapProductIntegerDeserializer(Arrays.asList(products)));
+        module.addDeserializer(HashMap.class, new HashMapSellerProductDeserializer(Arrays.asList(sellers), Arrays.asList(products)));
+        mapper.registerModule(module);
+
+        Store store = mapper.readValue(new File(dataPath + "store.json"), Store.class);
+
+        for(Admin admin : admins) {
+            admin.setStore(store);
+        }
+
+        Customer[] customers = mapper.readValue(new File(dataPath + "customers.json"), Customer[].class);
+
+        List<User> users = store.getUserList();
+        users.addAll(List.of(customers));
+        users.addAll(List.of(admins));
+        users.addAll(List.of(sellers));
+
         return store;
     }
 
