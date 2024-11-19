@@ -19,6 +19,6 @@ public class CustomerTest {
         Product product = new Product("Fleurs", 12.1, 2);
         this.customer.order(product, 2);
         assertEquals(1, this.customer.getOrderList().size());
-        assertEquals(0, product.getStock()); // TODO fonction de Jeremy qui marche pas
+        assertEquals(0, product.getStock());
     }
 }

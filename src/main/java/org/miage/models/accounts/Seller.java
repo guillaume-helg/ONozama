@@ -4,6 +4,7 @@ package org.miage.models.accounts;
 import org.miage.models.Product;
 import org.miage.models.Store;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Objects;
 
@@ -22,19 +23,13 @@ public class Seller extends User {
     }
 
     public void displayProduct(Store store) {
-        Map<Seller, Product> productList = store.getProductHashMap();
-        if (productList == null || productList.isEmpty()) {
-            System.out.println("No products available");
-            return;
-        }
+        Map<Seller, ArrayList<Product>> productList = store.getProductHashMap();
+        ArrayList<Product> products = productList.get(this);
+
         int i = 0;
-        for (Map.Entry<Seller, Product> entry : productList.entrySet()) {
 
-            Seller seller = entry.getKey();
-            if (Objects.equals(seller.getIdUser(), this.getIdUser())) {
-                System.out.println(i + " " + entry.getValue().toString());
-            }
-
+        for (Product product : products) {
+            System.out.println(product);
             i++;
         }
     }

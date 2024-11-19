@@ -31,28 +31,34 @@ public class SellerNavigation {
                     System.out.println("Produit ajouté !");
                     break;
                 case "supprimer":
-                    marchand.displayMenu();
+                    marchand.displayProduct(magasin);
                     System.out.println("Entrez le numéro du produit : ");
                     String numeroIndex = scanner.nextLine();
 
                     int index = Integer.parseInt(numeroIndex);
 
-                    Map<Seller, Product> productList = magasin.getProductHashMap();
-                    int i = 0;
+                    HashMap<Seller, ArrayList<Product>> productList = magasin.getProductHashMap();
                     boolean productFound = false;
+                    int i = 0;
 
-                    for (Map.Entry<Seller, Product> entry : productList.entrySet()) {
+                    for (Map.Entry<Seller, ArrayList<Product>> entry : productList.entrySet()) {
                         Seller seller = entry.getKey();
+
                         if (Objects.equals(seller.getIdUser(), marchand.getIdUser())) {
-                            if (i == index) {
-                                Product productToDelete = entry.getValue();
-                                magasin.deleteProduct(productToDelete, marchand);  // Suppression du produit
-                                System.out.println("Produit supprimé !");
-                                productFound = true;
-                                break;
+                            ArrayList<Product> products = entry.getValue();
+
+                            for (Product product : products) {
+                                if (i == index) {
+                                    products.remove(product);
+                                    System.out.println("Produit supprimé !");
+                                    productFound = true;
+                                    break;
+                                }
+                                i++;
                             }
-                            i++;
                         }
+
+                        if (productFound) break;
                     }
 
                     if (!productFound) {
