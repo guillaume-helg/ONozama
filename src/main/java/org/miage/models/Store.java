@@ -1,5 +1,7 @@
 package org.miage.models;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.miage.database.UserDeserializer;
 import org.miage.models.accounts.Seller;
 import org.miage.models.accounts.User;
 
@@ -11,6 +13,7 @@ import java.util.Map;
 public class Store {
 
     private List<User> userList;
+    @JsonDeserialize(keyUsing = UserDeserializer.class)
     private HashMap<Seller, Product> productHashMap;
 
     public Store() {

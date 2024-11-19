@@ -1,0 +1,24 @@
+{
+  "userList": [
+    {
+      "idUser": "jerem87",
+      "password": "pass",
+      "orderList": null
+    },
+    {
+      "idUser": "bogdan21",
+      "password": "password123"
+    },
+    {
+      "idUser": "guillaume31",
+      "password": "admin123"
+    }
+  ],
+  "productHashMap": {
+    "org.miage.models.accounts.Seller@12edcd21": {
+      "name": "Smartphone",
+      "price": 599.99,
+      "stock": 20
+    }
+  }
+}
