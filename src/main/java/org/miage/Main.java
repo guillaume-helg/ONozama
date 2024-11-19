@@ -1,8 +1,11 @@
 package org.miage;
 
+import org.miage.database.Database;
 import org.miage.models.*;
 import org.miage.models.accounts.*;
 import org.miage.navigation.*;
+
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
@@ -45,7 +48,6 @@ public class Main {
      * Initialisation des données temporaires (comptes et produits).
      */
     private static void initializeData() {
-        System.out.println("--------------------INITIALISATION--------------------");
         Customer client = new Customer("jerem87", "pass");
         Seller marchand = new Seller("bogdan21", "password123");
         Admin admin = new Admin("guillaume31", "admin123");
@@ -59,7 +61,19 @@ public class Main {
         marchand.addProduct(magasin, produit1);
         marchand.addProduct(magasin, produit2);
 
-        System.out.println("Données de test initialisées !\n");
+        client.order(produit1, 1);
+
+        System.out.println("Données de test initialisées !");
+        try {
+            Database.save(magasin);
+        } catch (IOException exception) {
+            System.out.println("Erreur de sauvegarde !" + exception);
+        }
+//        try {
+//            magasin = Database.load();
+//        } catch (IOException exception){
+//            System.out.println("Erreur de sauvegarde !" + exception.toString());
+//        }
     }
 
     /**

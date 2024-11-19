@@ -1,6 +1,9 @@
 package org.miage.models.accounts;
 
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.miage.models.Product;
 import org.miage.models.Store;
 
@@ -8,9 +11,11 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Objects;
 
+
 public class Seller extends User {
 
-    public Seller(String nomUtilisateur, String motDePasse) {
+    @JsonCreator
+    public Seller(@JsonProperty("idUser") String nomUtilisateur, @JsonProperty("password") String motDePasse) {
         super(nomUtilisateur, motDePasse);
     }
 

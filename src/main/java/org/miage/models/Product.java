@@ -1,11 +1,15 @@
 package org.miage.models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Product {
     private String name;
     private double price;
     private int stock;
 
-    public Product(String name, double price, int stock) {
+    @JsonCreator
+    public Product(@JsonProperty("name") String name, @JsonProperty("price") double price, @JsonProperty("stock") int stock) {
         this.name = name;
         this.price = price;
         this.stock = stock;

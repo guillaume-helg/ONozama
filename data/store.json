@@ -1,0 +1,27 @@
+{
+  "productHashMap": {
+    "bogdan21": [
+      "Laptop",
+      "Smartphone"
+    ]
+  },
+  "userList": [
+    {
+      "idUser": "jerem87",
+      "password": "pass",
+      "cart": {
+        "cartMap": {
+          "Laptop": 1
+        }
+      }
+    },
+    {
+      "idUser": "bogdan21",
+      "password": "password123"
+    },
+    {
+      "idUser": "guillaume31",
+      "password": "admin123"
+    }
+  ]
+}
