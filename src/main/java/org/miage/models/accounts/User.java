@@ -18,4 +18,12 @@ public abstract class User {
     }
 
     public abstract void displayMenu();
+
+    public void setIdUser(String idUser) {
+        this.idUser = idUser;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
