@@ -1,16 +1,28 @@
 package org.miage.models.accounts;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.miage.models.Cart;
 import org.miage.models.Product;
 
 import java.util.Scanner;
 
 public class Customer extends User {
+    @JsonProperty
     private Cart cart;
 
     public Customer(String nomUtilisateur, String motDePasse) {
         super(nomUtilisateur, motDePasse);
         this.cart = new Cart();
+    }
+
+    @JsonCreator
+    public Customer(@JsonProperty("idUser") String nomUtilisateur, @JsonProperty("password") String motDePasse, @JsonProperty("cart") Cart cart) {
+        super(nomUtilisateur, motDePasse);
+        this.cart = cart;
     }
 
     /**

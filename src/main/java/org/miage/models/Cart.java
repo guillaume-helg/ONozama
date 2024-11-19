@@ -1,12 +1,26 @@
 package org.miage.models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.miage.database.HashMapProductIntegerDeserializer;
+import org.miage.database.HashMapProductIntegerSerializer;
+
 import java.util.HashMap;
 
 public class Cart {
+    @JsonSerialize(using=HashMapProductIntegerSerializer.class)
+    @JsonDeserialize(using=HashMapProductIntegerDeserializer.class)
     private final HashMap<Product, Integer> cartMap;
 
     public Cart() {
         this.cartMap = new HashMap<>();
+    }
+
+    @JsonCreator
+    public Cart(@JsonProperty("cartMap") HashMap<Product, Integer> cartMap) {
+        this.cartMap = cartMap;
     }
 
     public void add(Product product, int quantity) {

@@ -1,5 +1,8 @@
 package org.miage.models.accounts;
 
+
+import com.fasterxml.jackson.annotation.*;
+
 public abstract class User {
     protected String idUser;
     protected String password;
