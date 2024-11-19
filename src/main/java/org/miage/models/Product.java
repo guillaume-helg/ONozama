@@ -23,13 +23,17 @@ public class Product {
         return stock;
     }
 
-    public boolean getProduct(int nombre){
-        if(nombre <= this.stock){
-            this.stock -= nombre;
+    public boolean getProduct(int number){
+        if(number <= this.stock){
+            this.stock -= number;
             return true;
         }
 
         return false;
+    }
+
+    public void pushProduct(int number){
+        this.stock += number;
     }
 
     @Override
