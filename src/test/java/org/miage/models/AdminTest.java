@@ -19,7 +19,7 @@ public class AdminTest {
         Customer customer = new Customer("Brochet", "Poisson");
         store.addAccount(customer);
 
-        admin.supprimerCompte(customer); // TODO problème avec la méthode supprimer compte, manque le store dans lequel supprimer
+        admin.deleteAccount(store, customer);
     }
 
 }

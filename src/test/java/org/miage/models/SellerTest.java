@@ -1,6 +1,6 @@
 package org.miage.models;
 
-import org.junit.Before;
+import org.junit.*;
 import org.miage.models.accounts.Seller;
 
 import static org.junit.Assert.assertEquals;
@@ -14,7 +14,7 @@ public class SellerTest {
         this.seller = new Seller("Yanis", "Degheb");
     }
 
-    @org.junit.Test
+    @Test
     public void ajouterProduit() {
         Store store = new Store();
         Product product = new Product("Fleurs", 12.1, 2);

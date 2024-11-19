@@ -1,6 +1,6 @@
 package org.miage.models;
 
-import org.junit.Before;
+import org.junit.*;
 import org.miage.models.accounts.User;
 
 import static org.junit.Assert.assertEquals;
@@ -19,12 +19,12 @@ public class UserTest {
         };
     }
 
-    @org.junit.Test
+    @Test
     public void getNomUtilisateur() {
         assertEquals("Roche", this.user.getIdUser());
     }
 
-    @org.junit.Test
+    @Test
     public void getMotDePasse() {
         assertEquals("Bleu", this.user.getPassword());
     }

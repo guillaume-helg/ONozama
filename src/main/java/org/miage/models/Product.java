@@ -23,6 +23,15 @@ public class Product {
         return stock;
     }
 
+    public boolean getProduct(int nombre){
+        if(nombre <= this.stock){
+            this.stock -= nombre;
+            return true;
+        }
+
+        return false;
+    }
+
     @Override
     public String toString() {
         return "Produit: " + name + ", Prix: " + price + ", Stock: " + stock;

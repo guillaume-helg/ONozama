@@ -15,9 +15,12 @@ public class Customer extends User {
     }
 
     public void order(Product produit, int quantite) {
-        Order commande = new Order(produit, quantite);
-        orderList.add(commande);
-        System.out.println("Commande passée : " + produit.getName() + " - Quantité : " + quantite);
+        if(produit.getProduct(quantite)){
+            Order commande = new Order(produit, quantite);
+            orderList.add(commande);
+            System.out.println("Commande passée : " + produit.getName() + " - Quantité : " + quantite);
+        }else
+            System.out.println("Erreur stock inférieur à la demande : "+produit.getStock()+" < "+quantite);
     }
 
     public void displayOrderList() {

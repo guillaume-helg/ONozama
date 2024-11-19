@@ -1,11 +1,14 @@
 package org.miage.models.accounts;
 
+import org.miage.models.Store;
+
 public class Admin extends User {
     public Admin(String nomUtilisateur, String motDePasse) {
         super(nomUtilisateur, motDePasse);
     }
 
-    public void supprimerCompte(User compte) {
+    public void deleteAccount(Store store, User compte) {
+        store.deleteAccount(compte);
         System.out.println("Compte " + compte.getIdUser() + " supprimé.");
     }
 
