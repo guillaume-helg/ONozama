@@ -1,20 +1,20 @@
 package org.miage.navigation;
 
-import org.miage.models.Store;
+import org.miage.Tool;
+import org.miage.database.Database;
 import org.miage.models.accounts.Customer;
-import java.util.Scanner;
 
 public class ClientNavigation {
-    public static void naviguerClient(Scanner scanner, Customer client, Store magasin) {
+    public static void naviguerClient(Customer client) {
         String choixClient = "";
         while (!choixClient.equals("retour")) {
             client.displayMenu();
-            choixClient = scanner.nextLine();
+            choixClient = Tool.scanner.nextLine();
 
             switch (choixClient.toLowerCase()) {
                 case "passer":
-                    magasin.displayProducts();
-                    magasin.order(client);
+                    Database.store.displayProducts();
+                    Database.store.order(client);
                     break;
                 case "panier":
                     client.displayCart();

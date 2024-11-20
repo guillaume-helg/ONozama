@@ -1,11 +1,8 @@
 package org.miage.models;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.miage.database.HashMapProductIntegerDeserializer;
-import org.miage.database.HashMapProductIntegerSerializer;
+import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.databind.annotation.*;
+import org.miage.database.*;
 
 import java.util.HashMap;
 

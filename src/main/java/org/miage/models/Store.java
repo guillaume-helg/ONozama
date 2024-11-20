@@ -1,21 +1,15 @@
 package org.miage.models;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.miage.database.HashMapSellerProductDeserializer;
-import org.miage.database.HashMapSellerProductSerializer;
-import org.miage.models.accounts.Customer;
-import org.miage.models.accounts.Seller;
-import org.miage.models.accounts.User;
+import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.databind.annotation.*;
+import org.miage.database.*;
+import org.miage.models.accounts.*;
 
 import java.util.*;
 
 public class Store {
     @JsonIgnore
-    private List<User> userList;
+    private final List<User> userList;
     @JsonDeserialize(using = HashMapSellerProductDeserializer.class)
     @JsonSerialize(using = HashMapSellerProductSerializer.class)
     private HashMap<Seller, ArrayList<Product>> productHashMap;
@@ -110,9 +104,7 @@ public class Store {
                 return null;
             }
 
-            Product product = products.get(productNumber);
-
-            return product;
+            return products.get(productNumber);
         } catch (Exception e) {
             System.out.println("Erreur : le code fourni est invalide. Format attendu : 'num_vendeur num_produit quantité'");
         }
@@ -131,6 +123,8 @@ public class Store {
         }
 
         for (Map.Entry<Seller, ArrayList<Product>> entry : productHashMap.entrySet()) {
+            System.out.println(productHashMap);
+
             Seller vendeur = entry.getKey();
             ArrayList<Product> products = entry.getValue();
 

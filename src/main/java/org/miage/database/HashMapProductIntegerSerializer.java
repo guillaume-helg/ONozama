@@ -1,8 +1,7 @@
 package org.miage.database;
 
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.*;
 import org.miage.models.Product;
 
 import java.io.IOException;

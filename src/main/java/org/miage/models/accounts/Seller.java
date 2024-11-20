@@ -1,15 +1,11 @@
 package org.miage.models.accounts;
 
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import org.miage.models.Product;
-import org.miage.models.Store;
+import com.fasterxml.jackson.annotation.*;
+import org.miage.models.*;
 
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.Objects;
 
 public class Seller extends User {
 

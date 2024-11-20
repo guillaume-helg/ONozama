@@ -1,13 +1,7 @@
 package org.miage.models.accounts;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.*;
 import org.miage.models.Store;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 public class Admin extends User {
 
@@ -30,8 +24,8 @@ public class Admin extends User {
     }
 
     public void modifyAccount(int index, String name, String password) {
-            store.getUserList().get(index).setIdUser(name);
-            store.getUserList().get(index).setPassword(password);
+        this.store.getUserList().get(index).setIdUser(name);
+        this.store.getUserList().get(index).setPassword(password);
     }
 
     @Override

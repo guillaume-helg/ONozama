@@ -1,6 +1,7 @@
 package org.miage.navigation;
 
-import org.miage.models.Store;
+import org.miage.Tool;
+import org.miage.database.Database;
 import org.miage.models.Product;
 import org.miage.models.accounts.Seller;
 
@@ -8,36 +9,36 @@ import java.util.*;
 
 public class SellerNavigation {
 
-    public static void naviguerMarchand(Scanner scanner, Seller marchand, Store magasin) {
+    public static void naviguerMarchand( Seller marchand) {
         String choixMarchand = "";
         while (!choixMarchand.equals("retour")) {
             marchand.displayMenu();
             System.out.println("Entrez une option (ajouter, supprimer, afficher, retour) :");
-            choixMarchand = scanner.nextLine();
+            choixMarchand = Tool.scanner.nextLine();
 
             switch (choixMarchand.toLowerCase()) {
                 case "ajouter":
                     System.out.println("Entrez le nom du produit : ");
-                    String nomProduit = scanner.nextLine();
+                    String nomProduit = Tool.scanner.nextLine();
 
                     System.out.println("Entrez le prix du produit : ");
-                    String prixProduit = scanner.nextLine();
+                    String prixProduit = Tool.scanner.nextLine();
 
                     System.out.println("Entrez la quantité de stock : ");
-                    String qttProduit = scanner.nextLine();
+                    String qttProduit = Tool.scanner.nextLine();
 
                     Product nouveauProduit = new Product(nomProduit, Double.parseDouble(prixProduit), Integer.parseInt(qttProduit));
-                    marchand.addProduct(magasin, nouveauProduit);
+                    marchand.addProduct(Database.store, nouveauProduit);
                     System.out.println("Produit ajouté !");
                     break;
                 case "supprimer":
-                    marchand.displayProduct(magasin);
+                    marchand.displayProduct(Database.store);
                     System.out.println("Entrez le numéro du produit : ");
-                    String numeroIndex = scanner.nextLine();
+                    String numeroIndex = Tool.scanner.nextLine();
 
                     int index = Integer.parseInt(numeroIndex);
 
-                    HashMap<Seller, ArrayList<Product>> productList = magasin.getProductHashMap();
+                    HashMap<Seller, ArrayList<Product>> productList = Database.store.getProductHashMap();
                     boolean productFound = false;
                     int i = 0;
 
@@ -67,7 +68,7 @@ public class SellerNavigation {
                     break;
                 case "afficher":
                     System.out.println("afficher ....");
-                    marchand.displayProduct(magasin);
+                    marchand.displayProduct(Database.store);
                     break;
                 case "retour":
                     System.out.println("Retour au menu principal.");

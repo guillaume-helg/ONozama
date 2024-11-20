@@ -1,8 +1,5 @@
 package org.miage.models.accounts;
 
-
-import com.fasterxml.jackson.annotation.*;
-
 public abstract class User {
     protected String idUser;
     protected String password;
@@ -19,14 +16,17 @@ public abstract class User {
     public String getPassword() {
         return password;
     }
-
-    public abstract void displayMenu();
-
     public void setIdUser(String idUser) {
         this.idUser = idUser;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    public abstract void displayMenu();
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName()+": " + this.idUser;
     }
 }
