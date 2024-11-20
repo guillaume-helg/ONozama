@@ -10,14 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class HashMapProductIntegerDeserializer extends JsonDeserializer<HashMap<Product, Integer>> {
-    List<Product> products;
 
-    HashMapProductIntegerDeserializer(List<Product> products) {
-        this.products = products;
-    }
-
-    HashMapProductIntegerDeserializer(){
-        products = new ArrayList<Product>();
+    HashMapProductIntegerDeserializer() {
     }
 
     @Override
@@ -34,6 +28,7 @@ public class HashMapProductIntegerDeserializer extends JsonDeserializer<HashMap<
             jsonParser.nextToken();
             Integer value = jsonParser.getIntValue();
 
+            List<Product> products = (List<Product>) deserializationContext.findInjectableValue("products", null, null);
             Product product = null;
 
             for (Product p : products) {

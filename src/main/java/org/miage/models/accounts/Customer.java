@@ -21,6 +21,10 @@ public class Customer extends User {
         this.cart = cart;
     }
 
+    public Cart getCart() {
+        return cart;
+    }
+
     /**
      * Permet de passer ou modifier une commande.
      *

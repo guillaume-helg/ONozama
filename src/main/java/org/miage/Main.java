@@ -1,13 +1,14 @@
 package org.miage;
 
 import org.miage.database.Database;
+import org.miage.models.Product;
+import org.miage.models.Store;
 import org.miage.models.accounts.*;
 import org.miage.navigation.*;
 
 import java.io.IOException;
 
 public class Main {
-
 
     public static void main(String[] args) {
         // Initialisation des données
@@ -45,10 +46,26 @@ public class Main {
      * Initialisation des données (comptes et produits).
      */
     private static void initializeData() {
-//        Customer client = new Customer("jerem87", "pass");
-//        Seller marchand = new Seller("bogdan21", "password123");
-//        Admin admin = new Admin("guillaume31", "admin123");
-//
+        try {
+            Database.load();
+        } catch (IOException exception){
+            System.out.println("Erreur de sauvegarde !" + exception);
+        }
+
+        Customer client = new Customer("jerem87", "pass");
+        Seller marchand = new Seller("bogdan21", "password123");
+        Admin admin = new Admin("guillaume31", "admin123");
+
+        Store magasin = Database.store;
+        System.out.println(magasin.getProductHashMap());
+        Customer j = new Customer("Bob", "d");
+        for(User u : magasin.getUserList()){
+            if(u.getIdUser().equals("jerem87")){
+                j = (Customer) u;
+            }
+        }
+        System.out.println(j.getCart().getCartMap());
+
 //        magasin.addAccount(client);
 //        magasin.addAccount(marchand);
 //        magasin.addAccount(admin);
@@ -59,18 +76,13 @@ public class Main {
 //        marchand.addProduct(magasin, produit2);
 //
 //        client.order(produit1, 1);
-//
-//        System.out.println("Données de test initialisées !");
+
+        System.out.println("Données de test initialisées !");
 //        try {
 //            Database.save(magasin);
 //        } catch (IOException exception) {
 //            System.out.println("Erreur de sauvegarde !" + exception);
 //        }
-        try {
-            Database.load();
-        } catch (IOException exception){
-            System.out.println("Erreur de sauvegarde !" + exception);
-        }
     }
 
     /**

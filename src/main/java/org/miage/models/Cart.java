@@ -20,6 +20,10 @@ public class Cart {
         this.cartMap = cartMap;
     }
 
+    public HashMap<Product, Integer> getCartMap() {
+        return cartMap;
+    }
+
     public void add(Product product, int quantity) {
         if (product == null || quantity <= 0) {
             throw new IllegalArgumentException("Le produit ne peut pas être nul et la quantité doit être positive.");

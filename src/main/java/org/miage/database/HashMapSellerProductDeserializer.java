@@ -9,21 +9,12 @@ import java.io.IOException;
 import java.util.*;
 
 public class HashMapSellerProductDeserializer extends JsonDeserializer<HashMap<Seller, ArrayList<Product>>> {
-    List<Product> products;
-    List<Seller> sellers;
-
-    HashMapSellerProductDeserializer(List<Seller> sellers, List<Product> products) {
-        this.products = products;
-        this.sellers = sellers;
-    }
 
     HashMapSellerProductDeserializer(){
-        this.products = new ArrayList<>();
-        this.sellers = new ArrayList<>();
     }
 
     @Override
-    public HashMap<Seller, ArrayList<Product>> deserialize(JsonParser parser, DeserializationContext ctxt) throws IOException {
+    public HashMap<Seller, ArrayList<Product>> deserialize(JsonParser parser, DeserializationContext deserializationContext) throws IOException {
         HashMap<Seller, ArrayList<Product>> result = new HashMap<>();
         ObjectMapper mapper = (ObjectMapper) parser.getCodec();
         JsonNode rootNode = mapper.readTree(parser);
@@ -33,6 +24,9 @@ public class HashMapSellerProductDeserializer extends JsonDeserializer<HashMap<S
             Map.Entry<String, JsonNode> field = fields.next();
             String idUser = field.getKey();
             JsonNode productsNode = field.getValue();
+
+            List<Product> products = (List<Product>) deserializationContext.findInjectableValue("products", null, null);
+            List<Seller> sellers = (List<Seller>) deserializationContext.findInjectableValue("sellers", null, null);
 
             Seller seller = null;
             for (Seller s : sellers) {

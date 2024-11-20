@@ -1,5 +1,6 @@
 package org.miage.database;
 
+import com.fasterxml.jackson.databind.InjectableValues;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.miage.models.*;
@@ -7,11 +8,11 @@ import org.miage.models.accounts.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Database {
     public static final String dataPath = new File("").getAbsolutePath() + "\\data\\";
-
     public static Store store;
 
     public static void load() throws IOException {
@@ -21,10 +22,11 @@ public class Database {
         Seller[] sellers = mapper.readValue(new File(dataPath + "sellers.json"), Seller[].class);
         Admin[] admins = mapper.readValue(new File(dataPath + "admins.json"), Admin[].class);
 
-        SimpleModule module = new SimpleModule();
-        module.addDeserializer(HashMap.class, new HashMapProductIntegerDeserializer(Arrays.asList(products)));
-        module.addDeserializer(HashMap.class, new HashMapSellerProductDeserializer(Arrays.asList(sellers), Arrays.asList(products)));
-        mapper.registerModule(module);
+        mapper.setInjectableValues(new InjectableValues
+                .Std()
+                .addValue("sellers", Arrays.asList(sellers))
+                .addValue("products", Arrays.asList(products))
+        );
 
         Database.store = mapper.readValue(new File(dataPath + "store.json"), Store.class);
 
