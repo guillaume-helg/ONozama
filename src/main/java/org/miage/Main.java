@@ -52,20 +52,20 @@ public class Main {
             System.out.println("Erreur de sauvegarde !" + exception);
         }
 
-        Customer client = new Customer("jerem87", "pass");
-        Seller marchand = new Seller("bogdan21", "password123");
-        Admin admin = new Admin("guillaume31", "admin123");
-
-        Store magasin = Database.store;
-        System.out.println(magasin.getProductHashMap());
-        Customer j = new Customer("Bob", "d");
-        for(User u : magasin.getUserList()){
-            if(u.getIdUser().equals("jerem87")){
-                j = (Customer) u;
-            }
-        }
-        System.out.println(j.getCart().getCartMap());
-
+//        Customer client = new Customer("jerem87", "pass");
+//        Seller marchand = new Seller("bogdan21", "password123");
+//        Admin admin = new Admin("guillaume31", "admin123");
+//
+//        Store magasin = Database.store;
+//        System.out.println(magasin.getProductHashMap());
+//        Customer j = new Customer("Bob", "d");
+//        for(User u : magasin.getUserList()){
+//            if(u.getIdUser().equals("jerem87")){
+//                j = (Customer) u;
+//            }
+//        }
+//        System.out.println(j.getCart().getCartMap());
+//
 //        magasin.addAccount(client);
 //        magasin.addAccount(marchand);
 //        magasin.addAccount(admin);
