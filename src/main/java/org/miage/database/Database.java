@@ -53,7 +53,7 @@ public class Database {
         System.out.println(Arrays.toString(array));
     }
 
-    public static void save(Store store) throws IOException {
+    public static void save() throws IOException {
         List<Product> products = flatten(store.getProductHashMap().values());
 
         ObjectMapper mapper = new ObjectMapper();

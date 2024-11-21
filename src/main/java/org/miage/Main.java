@@ -40,6 +40,19 @@ public class Main {
             }
         } while (true);
 
+        storeData();
+
+    }
+
+    /**
+     * Sauvegarde des données (comptes et produits).
+     */
+    private static void storeData() {
+        try {
+            Database.save();
+        } catch (IOException exception) {
+            System.out.println("Erreur de sauvegarde des données !" + exception);
+        }
     }
 
     /**
@@ -49,40 +62,8 @@ public class Main {
         try {
             Database.load();
         } catch (IOException exception){
-            System.out.println("Erreur de sauvegarde !" + exception);
+            System.out.println("Erreur d'initialization des données !" + exception);
         }
-
-//        Customer client = new Customer("jerem87", "pass");
-//        Seller marchand = new Seller("bogdan21", "password123");
-//        Admin admin = new Admin("guillaume31", "admin123");
-//
-//        Store magasin = Database.store;
-//        System.out.println(magasin.getProductHashMap());
-//        Customer j = new Customer("Bob", "d");
-//        for(User u : magasin.getUserList()){
-//            if(u.getIdUser().equals("jerem87")){
-//                j = (Customer) u;
-//            }
-//        }
-//        System.out.println(j.getCart().getCartMap());
-//
-//        magasin.addAccount(client);
-//        magasin.addAccount(marchand);
-//        magasin.addAccount(admin);
-//
-//        Product produit1 = new Product("Laptop", 999.99, 10);
-//        Product produit2 = new Product("Smartphone", 599.99, 20);
-//        marchand.addProduct(magasin, produit1);
-//        marchand.addProduct(magasin, produit2);
-//
-//        client.order(produit1, 1);
-
-        System.out.println("Données de test initialisées !");
-//        try {
-//            Database.save(magasin);
-//        } catch (IOException exception) {
-//            System.out.println("Erreur de sauvegarde !" + exception);
-//        }
     }
 
     /**
