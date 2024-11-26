@@ -150,7 +150,14 @@ public class Store {
 
         int quantity = Integer.parseInt(choix.split(" ")[2]); // Quantité
 
-        client.order(product, quantity);
+
+        if(quantity > 0){
+            client.addToCart(product, quantity);
+        } else if (quantity < 0) {
+            client.removeFromCart(product, quantity);
+        }else{
+            System.out.println("Quantité ne peut pas être 0");
+        }
     }
 
     public User connection(String username, String password) {

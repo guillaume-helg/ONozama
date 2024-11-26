@@ -1,6 +1,7 @@
 package org.miage.models.accounts;
 
 import com.fasterxml.jackson.annotation.*;
+import org.miage.Tool;
 import org.miage.models.Cart;
 import org.miage.models.Product;
 
@@ -26,35 +27,46 @@ public class Customer extends User {
     }
 
     /**
-     * Permet de passer ou modifier une commande.
+     * Ajoute un produit au panier.
      *
      * @param produit  Le produit concerné.
-     * @param quantite La quantité à ajouter ou retirer.
+     * @param quantite La quantité à ajouter.
      */
-    public void order(Product produit, int quantite) {
-        if (produit == null || quantite == 0) {
-            System.out.println("Erreur : produit invalide ou quantité nulle.");
+    public void addToCart(Product produit, int quantite) {
+        if (produit == null || quantite <= 0) {
+            System.out.println("Erreur : produit invalide ou quantité incorrecte.");
             return;
         }
 
-        if (quantite > 0) { // Ajout au panier
-            if (produit.getProduct(quantite)) {
-                cart.add(produit, quantite);
-                System.out.println("Ajouté au panier : " + produit.getName() + " - Quantité : " + quantite);
-            } else {
-                System.out.println("Erreur : stock insuffisant. Stock disponible : " + produit.getStock());
-            }
-        } else { // Retrait du panier
-            int quantiteAbs = Math.abs(quantite);
-            try {
-                cart.remove(produit, quantiteAbs);
-                produit.pushProduct(quantiteAbs);
-                System.out.println("Retiré du panier : " + produit.getName() + " - Quantité : " + quantiteAbs);
-            } catch (IllegalArgumentException e) {
-                System.out.println("Erreur : " + e.getMessage());
-            }
+        if (produit.getProduct(quantite)) {
+            cart.add(produit, quantite);
+            System.out.println("Ajouté au panier : " + produit.getName() + " - Quantité : " + quantite);
+        } else {
+            System.out.println("Erreur : stock insuffisant. Stock disponible : " + produit.getStock());
         }
     }
+
+    /**
+     * Retire un produit du panier.
+     *
+     * @param produit  Le produit concerné.
+     * @param quantite La quantité à retirer.
+     */
+    public void removeFromCart(Product produit, int quantite) {
+        if (produit == null || quantite <= 0) {
+            System.out.println("Erreur : produit invalide ou quantité incorrecte.");
+            return;
+        }
+
+        try {
+            cart.remove(produit, quantite);
+            produit.pushProduct(quantite);
+            System.out.println("Retiré du panier : " + produit.getName() + " - Quantité : " + quantite);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Erreur : " + e.getMessage());
+        }
+    }
+
 
     /**
      * Affiche le contenu du panier et gère les interactions utilisateur.
@@ -69,7 +81,32 @@ public class Customer extends User {
             String choixClient = scanner.nextLine();
 
             switch (choixClient.toLowerCase()) {
-                case "supprimer" -> handleRemoveFromCart(scanner);
+                case "supprimer" -> {
+                    System.out.println("Entrez le numéro du produit et la quantité à supprimer (format : num quantité) :");
+                    String choix = Tool.scanner.nextLine();
+
+                    try {
+                        String[] choixArray = choix.split(" ");
+                        int numProduit = Integer.parseInt(choixArray[0]);
+                        int quantite = Integer.parseInt(choixArray[1]);
+
+                        Product produit = cart.getProductByIndex(numProduit);
+
+                        if (produit == null) {
+                            System.out.println("Erreur : produit non trouvé pour le numéro " + numProduit);
+                            return;
+                        }
+
+                        removeFromCart(produit, quantite);
+                        System.out.printf("Quantité mise à jour pour le produit %s. Quantité restante : %d\n",
+                                produit.getName(),
+                                cart.size());
+
+                    }catch (Exception e){
+                        System.out.println(e.getMessage());
+                    }
+
+                }
                 case "vider" -> {
                     cart.clear();
                     System.out.println("Votre panier a été vidé.");
@@ -92,39 +129,5 @@ public class Customer extends User {
                 2. panier (Voir et gérer le panier)
                 3. retour (Retour au menu principal)
                 """);
-    }
-
-    /**
-     * Permet de supprimer un produit spécifique du panier.
-     *
-     * @param scanner Scanner pour lire l'entrée utilisateur.
-     */
-    private void handleRemoveFromCart(Scanner scanner) {
-        System.out.println("Entrez le numéro du produit et la quantité à supprimer (format : num quantité) :");
-        String choix = scanner.nextLine();
-
-        try {
-            String[] choixArray = choix.split(" ");
-            int numProduit = Integer.parseInt(choixArray[0]);
-            int quantite = Integer.parseInt(choixArray[1]);
-
-            Product produitASupprimer = cart.getProductByIndex(numProduit);
-
-            if (produitASupprimer == null) {
-                System.out.println("Erreur : produit non trouvé pour le numéro " + numProduit);
-                return;
-            }
-
-            try {
-                cart.remove(produitASupprimer, quantite);
-                System.out.printf("Quantité mise à jour pour le produit %s. Quantité restante : %d\n",
-                        produitASupprimer.getName(),
-                        cart.size());
-            } catch (IllegalArgumentException e) {
-                System.out.println("Erreur : " + e.getMessage());
-            }
-        } catch (NumberFormatException e) {
-            System.out.println("Erreur : format incorrect. Utilisez 'num quantité'.");
-        }
     }
 }
