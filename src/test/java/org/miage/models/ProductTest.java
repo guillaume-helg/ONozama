@@ -22,15 +22,10 @@ public class ProductTest {
     @Test
     public void getPrix() {
         assertEquals(12.0, this.product.getPrice(), 0.01);
-
     }
 
     @Test
     public void getStock() {
         assertEquals(34, this.product.getStock(), 0.01);
-    }
-
-    @Test
-    public void testToString() {
     }
 }
