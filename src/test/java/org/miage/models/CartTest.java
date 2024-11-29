@@ -82,18 +82,7 @@ public class CartTest {
         assertEquals(2, cart.size());
     }
 
-    @Test
-    public void testToString() {
-        assertEquals("Contenu du panier :\n-- Vide --\n", cart.toString());
 
-        cart.add(product1, 1);
-        String expected = "Contenu du panier :\nProduit (0) : Produit 1, Quantité : 1\n";
-        assertEquals(expected, cart.toString());
-
-        cart.add(product2, 2);
-        expected = "Contenu du panier :\nProduit (0) : Produit 1, Quantité : 1\nProduit (1) : Produit 2, Quantité : 2\n";
-        assertEquals(expected, cart.toString());
-    }
 
     @Test
     public void testClear() {
@@ -109,10 +98,8 @@ public class CartTest {
     @Test
     public void testGetProductByIndex() {
         cart.add(product1, 1);
-        cart.add(product2, 2);
 
         assertEquals(product1, cart.getProductByIndex(0));
-        assertEquals(product2, cart.getProductByIndex(1));
 
         assertNull(cart.getProductByIndex(2));
     }

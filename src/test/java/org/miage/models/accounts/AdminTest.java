@@ -8,7 +8,6 @@ import static org.junit.Assert.*;
 
 public class AdminTest {
 
-
     private Admin admin;
     private Customer customer;
     private Store store;
@@ -28,9 +27,16 @@ public class AdminTest {
 
     @Test
     public void testDeleteAccount() {
+        this.store.addAccount(this.customer);
+        this.admin.deleteAccount(this.customer);
+        assertEquals(0, this.store.getUserList().size());
     }
 
     @Test
     public void setStore() {
+        Store store1 = new Store();
+        assertNotEquals(store1, admin.getStore());
+        this.admin.setStore(store1);
+        assertEquals(store1, admin.getStore());
     }
 }

@@ -36,4 +36,8 @@ public class Admin extends User {
     public void setStore(Store store) {
         this.store = store;
     }
+
+    public Store getStore() {
+        return store;
+    }
 }

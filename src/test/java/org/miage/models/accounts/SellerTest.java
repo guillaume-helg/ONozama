@@ -27,7 +27,10 @@ public class SellerTest {
     @Test
     public void deleteProduct() {
         Product p1 = new Product("Lapin", 12.0, 3);
-        this.seller.deleteProduct(this.store, p1);
+        assertEquals(0, this.store.getProductHashMap().size());
+        this.seller.addProduct(this.store, p1);
         assertEquals(1, this.store.getProductHashMap().size());
+        this.seller.deleteProduct(this.store, p1);
+        assertEquals(0, this.store.getProductHashMap().size());
     }
 }

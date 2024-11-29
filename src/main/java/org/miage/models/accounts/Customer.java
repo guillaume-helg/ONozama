@@ -1,12 +1,10 @@
 package org.miage.models.accounts;
 
-
 import com.fasterxml.jackson.annotation.*;
 import org.miage.Tool;
 import org.miage.models.Cart;
 import org.miage.models.Product;
 
-import javax.annotation.processing.Generated;
 import java.util.Scanner;
 
 public class Customer extends User {
